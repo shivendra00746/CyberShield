@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberShield Dashboard</title>
+
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            padding: 28px;
+            background: #0b1220;
+            color: #e5f3ff;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            border-bottom: 1px solid #294158;
+            padding-bottom: 18px;
+        }
+
+        h1 { color: #22d3ee; }
+        .subtitle, .muted { color: #a8bfd3; }
+
+        .status { color: #86efac; }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            gap: 18px;
+            margin: 24px 0;
+        }
+
+        .card, .panel {
+            background: #172337;
+            border: 1px solid #294158;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .number {
+            font-size: 34px;
+            font-weight: bold;
+            color: #22d3ee;
+            margin: 10px 0;
+        }
+
+        .alert {
+            background: #301c29;
+            border-left: 4px solid #ef4444;
+            padding: 14px;
+            border-radius: 6px;
+            margin: 12px 0;
+        }
+
+        .safe {
+            background: #142b2a;
+            border-left: 4px solid #22c55e;
+            padding: 14px;
+            border-radius: 6px;
+        }
+
+        .table-wrap { overflow-x: auto; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 560px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #294158;
+        }
+
+        th { color: #22d3ee; }
+
+        .failed { color: #fca5a5; }
+        .success { color: #86efac; }
+
+        footer {
+            margin-top: 25px;
+            color: #8ba2b8;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>🛡️ CyberShield</h1>
+        <p class="subtitle">
+            Cybersecurity Monitoring and Incident Response Platform
+        </p>
+        <p class="status">● Dashboard connected to Flask</p>
+    </header>
+
+    <h2>Security Overview</h2>
+
+    <section class="cards">
+        <div class="card">
+            <h3>Security Events</h3>
+            <p class="number">{{ total_events }}</p>
+            <p class="muted">CSV records loaded</p>
+        </div>
+
+        <div class="card">
+            <h3>Active Alerts</h3>
+            <p class="number">{{ total_alerts }}</p>
+            <p class="muted">Detection rule matches</p>
+        </div>
+
+        <div class="card">
+            <h3>Open Incidents</h3>
+            <p class="number">{{ total_incidents }}</p>
+            <p class="muted">Incident tracking not yet enabled</p>
+        </div>
+    </section>
+
+    <section class="panel">
+        <h2>Security Alerts</h2>
+
+        {% if alerts %}
+            {% for alert in alerts %}
+                <div class="alert">
+                    <strong>⚠ {{ alert.message }}</strong>
+                    <p>Source IP: {{ alert.source_ip }}</p>
+                    <p>Failed attempts: {{ alert.count }}</p>
+                    <p class="muted">
+                        Sample-data alert. Investigate before drawing conclusions.
+                    </p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="safe">
+                No alerts matched the current detection rule.
+            </div>
+        {% endif %}
+    </section>
+
+    <section class="panel">
+        <h2>Recent Security Activity</h2>
+
+        {% if recent_events %}
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Timestamp</th>
+                            <th>Source IP</th>
+                            <th>Event</th>
+                            <th>Username</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for event in recent_events %}
+                            <tr>
+                                <td>{{ event.timestamp }}</td>
+                                <td>{{ event.source_ip }}</td>
+                                <td>{{ event.event_type }}</td>
+                                <td>{{ event.username }}</td>
+                                <td class="{{ 'failed' if event.status == 'failed' else 'success' }}">
+                                    {{ event.status }}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <p class="muted">No log records available.</p>
+        {% endif %}
+    </section>
+
+    <section class="panel">
+        <h2>Incident Response</h2>
+        <p>
+            Current stage: Detection dashboard.
+            Incident investigation and response tracking are planned next.
+        </p>
+    </section>
+
+    <footer>
+        CyberShield Student Project | Sample Data | Educational Demo
+    </footer>
+</body>
+</html>
