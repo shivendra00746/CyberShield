@@ -1,0 +1,271 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberShield | Security Dashboard</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 28px;
+            background: #0b1220;
+            color: #e5f3ff;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            border-bottom: 1px solid #294158;
+            padding-bottom: 18px;
+        }
+
+        h1 {
+            color: #22d3ee;
+        }
+
+        .subtitle, .muted {
+            color: #a8bfd3;
+        }
+
+        .status {
+            color: #86efac;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            gap: 18px;
+            margin: 24px 0;
+        }
+
+        .card, .panel {
+            background: #172337;
+            border: 1px solid #294158;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .number {
+            font-size: 34px;
+            font-weight: bold;
+            color: #22d3ee;
+            margin: 10px 0;
+        }
+
+        .alert {
+            background: #301c29;
+            border-left: 4px solid #ef4444;
+            padding: 14px;
+            border-radius: 6px;
+            margin: 12px 0;
+        }
+
+        .safe {
+            background: #142b2a;
+            border-left: 4px solid #22c55e;
+            padding: 14px;
+            border-radius: 6px;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 560px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #294158;
+        }
+
+        th {
+            color: #22d3ee;
+        }
+
+        .failed {
+            color: #fca5a5;
+        }
+
+        .success {
+            color: #86efac;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 16px;
+            border: 0;
+            border-radius: 7px;
+            background: #22d3ee;
+            color: #0b1220;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        footer {
+            margin-top: 25px;
+            color: #8ba2b8;
+            font-size: 13px;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>🛡️ CyberShield</h1>
+        <p class="subtitle">
+            Cybersecurity Monitoring and Incident Response Platform
+        </p>
+        <p class="status">● Demo Dashboard Online</p>
+    </header>
+
+    <main>
+        <h2>Security Overview</h2>
+
+        <section class="cards">
+            <div class="card">
+                <h3>Security Events</h3>
+                <p class="number" id="eventCount">7</p>
+                <p class="muted">Demonstration log records</p>
+            </div>
+
+            <div class="card">
+                <h3>Active Alerts</h3>
+                <p class="number" id="alertCount">1</p>
+                <p class="muted">Sample detection rule match</p>
+            </div>
+
+            <div class="card">
+                <h3>Open Incidents</h3>
+                <p class="number" id="incidentCount">0</p>
+                <p class="muted">No incidents recorded</p>
+            </div>
+        </section>
+
+        <section class="panel">
+            <h2>Security Alerts</h2>
+
+            <div class="alert">
+                <strong>⚠ Multiple failed logins detected</strong>
+                <p>Source IP: 192.168.1.10</p>
+                <p>Failed attempts: 5</p>
+                <p class="muted">
+                    Fictional sample alert for project demonstration.
+                </p>
+            </div>
+        </section>
+
+        <section class="panel">
+            <h2>Recent Security Activity</h2>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Timestamp</th>
+                            <th>Source IP</th>
+                            <th>Event</th>
+                            <th>Username</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="activityTable">
+                        <tr>
+                            <td>2026-10-24 10:00:00</td>
+                            <td>192.168.1.10</td>
+                            <td>login</td>
+                            <td>student</td>
+                            <td class="failed">failed</td>
+                        </tr>
+                        <tr>
+                            <td>2026-10-24 10:00:10</td>
+                            <td>192.168.1.10</td>
+                            <td>login</td>
+                            <td>student</td>
+                            <td class="failed">failed</td>
+                        </tr>
+                        <tr>
+                            <td>2026-10-24 10:00:20</td>
+                            <td>192.168.1.10</td>
+                            <td>login</td>
+                            <td>student</td>
+                            <td class="failed">failed</td>
+                        </tr>
+                        <tr>
+                            <td>2026-10-24 10:00:30</td>
+                            <td>192.168.1.10</td>
+                            <td>login</td>
+                            <td>student</td>
+                            <td class="failed">failed</td>
+                        </tr>
+                        <tr>
+                            <td>2026-10-24 10:00:40</td>
+                            <td>192.168.1.10</td>
+                            <td>login</td>
+                            <td>student</td>
+                            <td class="failed">failed</td>
+                        </tr>
+                        <tr>
+                            <td>2026-10-24 10:01:00</td>
+                            <td>192.168.1.10</td>
+                            <td>login</td>
+                            <td>student</td>
+                            <td class="success">success</td>
+                        </tr>
+                        <tr>
+                            <td>2026-10-24 10:02:00</td>
+                            <td>192.168.1.20</td>
+                            <td>login</td>
+                            <td>admin</td>
+                            <td class="success">success</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="panel">
+            <h2>Incident Response</h2>
+            <p>
+                Current stage: Security event demonstration and alert display.
+            </p>
+            <p class="muted">
+                Incident investigation and response tracking are planned for
+                a future project phase.
+            </p>
+            <button class="button" onclick="showDemoMessage()">
+                View Dashboard Status
+            </button>
+            <p id="demoMessage" aria-live="polite"></p>
+        </section>
+    </main>
+
+    <footer>
+        CyberShield Student Project | Sample Data | Educational Demo
+    </footer>
+
+    <script>
+        function showDemoMessage() {
+            document.getElementById("demoMessage").textContent =
+                "Dashboard is working. This page displays sample data only.";
+        }
+    </script>
+</body>
+</html>
