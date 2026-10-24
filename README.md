@@ -1,6 +1,5 @@
 
 # CyberShield
-
 ### Cybersecurity Monitoring Dashboard
 
 CyberShield is a student project designed to demonstrate basic cybersecurity monitoring, security event analysis, and incident alerting.
